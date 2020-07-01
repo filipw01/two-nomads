@@ -3,7 +3,7 @@ import { PageProps } from 'gatsby';
 
 const NotFound: React.FC<PageProps> = () => (
   <main>
-    <p>Sorry, page not found!</p>
+    <p>Page not found!</p>
   </main>
 );
 

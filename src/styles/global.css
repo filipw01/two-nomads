@@ -1,0 +1,34 @@
+body {
+  margin: 0;
+  background: repeating-linear-gradient(
+    #e66465,
+    #e66465 20px,
+    #9198e5 20px,
+    #9198e5 25px
+  );
+  font-family: 'Livvic';
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: white;
+}
+
+@font-face {
+  font-family: 'Livvic';
+  font-weight: 400;
+  src: url('../fonts/Livvic/Livvic-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Zilla Slab';
+  font-weight: 700;
+  src: url('../fonts/Zilla_Slab/ZillaSlab-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Zilla Slab';
+  font-weight: 500;
+  src: url('../fonts/Zilla_Slab/ZillaSlab-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Zilla Slab';
+  font-weight: 600;
+  src: url('../fonts/Zilla_Slab/ZillaSlab-SemiBold.ttf') format('truetype');
+}

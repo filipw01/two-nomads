@@ -1,17 +1,23 @@
 import React from 'react';
 import { PageProps } from 'gatsby';
-
-import Title from '@/components/Title';
+import LinkButton from '@/components/LinkButton';
+import Heading from '@/components/Heading';
+import Navigation from '@/components/Navigation';
 
 const Home: React.FC<PageProps> = () => (
-  <main>
-    <Title />
-    <p>A TypeScript starter for Gatsby. Great for advanced users.</p>
-    <p>
-      Follow me on Twitter (
-      <a href="https://twitter.com/jpedroschmitz">@jpedroschmitz</a>)
-    </p>
-  </main>
+  <>
+    <Navigation />
+    <main>
+      <Heading>Podróżowanie z wygodą</Heading>
+      <p>
+        Jedzenie śniadań, ograniczenie spożycia produktów wysoko-przetworzonych
+        i soli.
+      </p>
+      <Heading level={3}>Tytuł</Heading>
+      <Heading level={4}>Tytuł</Heading>
+      <LinkButton to="test">test</LinkButton>
+    </main>
+  </>
 );
 
 export default Home;
