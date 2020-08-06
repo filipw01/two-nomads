@@ -17,6 +17,8 @@
   "plugins": ["react", "react-hooks", "jsx-a11y", "prettier"],
   "extends": ["plugin:react/recommended", "airbnb", "prettier/react"],
   "rules": {
+    "comma-dangle": "off",
+    "object-curly-newline": "off",
     "prettier/prettier": "error",
     "import/prefer-default-export": "off",
     "react/prop-types": "off",

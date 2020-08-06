@@ -13,8 +13,8 @@ interface Props {
   link: string;
 }
 
-const MenuItem: React.FC<Props> = ({ name, link }) => {
-  return <StyledMenuItem to={link}>{name}</StyledMenuItem>;
-};
+const MenuItem: React.FC<Props> = ({ name, link }) => (
+  <StyledMenuItem to={link}>{name}</StyledMenuItem>
+);
 
 export default MenuItem;

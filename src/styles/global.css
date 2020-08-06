@@ -1,15 +1,24 @@
+:root {
+  --primary-heading-color: #2a2a2a;
+  --primary-text-color: #454545;
+  --secondary-heading-color: #ffffff;
+  --secondary-text-color: #ffffff;
+  --heading-color: var(--primary-heading-color);
+  --text-color: var(--primary-text-color);
+}
+
 body {
   margin: 0;
-  background: repeating-linear-gradient(
-    #e66465,
-    #e66465 20px,
-    #9198e5 20px,
-    #9198e5 25px
-  );
+  background: gray;
   font-family: 'Livvic';
   font-size: 1.125rem;
   line-height: 1.3;
-  color: white;
+  color: var(--text-color);
+}
+
+p {
+  margin-bottom: 0.3em;
+  color: var(--text-color);
 }
 
 @font-face {

@@ -39,6 +39,8 @@ const Heading: React.FC<Props> = ({ level = 1, as, children }) => {
   const StyledHeading = styled(CurrentLevelHeading)`
     font-family: 'Zilla Slab';
     line-height: 1.05;
+    margin-bottom: 0.3em;
+    color: var(--heading-color);
     ${restStyle}
   `;
   return <StyledHeading>{children}</StyledHeading>;

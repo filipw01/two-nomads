@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import Container from './Container';
+import Container from './base/Container';
 import MenuItem from './MenuItem';
+import { SecondaryTextColor } from './base/Colors';
 
 const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   padding: 2.5rem 0;
+  color: var(--text-color);
 `;
 
 const Navigation: React.FC<unknown> = () => {
@@ -16,15 +18,17 @@ const Navigation: React.FC<unknown> = () => {
   ];
   return (
     <Container>
-      <StyledHeader>
-        <div>2N</div>
-        <ul>
-          {menuItems.map((menuItem) => {
-            const { name, link } = menuItem;
-            return <MenuItem name={name} link={link} />;
-          })}
-        </ul>
-      </StyledHeader>
+      <SecondaryTextColor>
+        <StyledHeader>
+          <div>2N</div>
+          <ul>
+            {menuItems.map((menuItem) => {
+              const { name, link } = menuItem;
+              return <MenuItem name={name} link={link} />;
+            })}
+          </ul>
+        </StyledHeader>
+      </SecondaryTextColor>
     </Container>
   );
 };
