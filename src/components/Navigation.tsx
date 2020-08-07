@@ -24,7 +24,7 @@ const Navigation: React.FC<unknown> = () => {
           <ul>
             {menuItems.map((menuItem) => {
               const { name, link } = menuItem;
-              return <MenuItem name={name} link={link} />;
+              return <MenuItem key={name} name={name} link={link} />;
             })}
           </ul>
         </StyledHeader>

@@ -1,3 +1,5 @@
+import { PageProps, graphql } from 'gatsby';
+import { FixedObject } from 'gatsby-image';
 import Align from '@/components/base/Align';
 import { SecondaryTextColor } from '@/components/base/Colors';
 import Container from '@/components/base/Container';
@@ -5,93 +7,32 @@ import Heading from '@/components/base/Heading';
 import LinkButton from '@/components/base/LinkButton';
 import BlogTile from '@/components/BlogTile';
 import Navigation from '@/components/Navigation';
-import { PageProps } from 'gatsby';
 import React from 'react';
 import Masonry from 'react-masonry-component';
+import getThumbnailSize from '@/utils/getThumbnailSize';
 
-const blogPosts = [
-  {
-    title: 'Pierwszy lot samolotem',
-    date: { day: 2, month: 6, year: 2020 },
-    image:
-      'https://images.unsplash.com/photo-1503152394-c571994fd383?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
-    imageAlt: '',
-    text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac lectus iaculis ut amet, consequat. Iaculis vivamus pharetra fringilla sit. Vitae est.',
-    wordsCount: 120,
-  },
-  {
-    title: 'Drugi lot samolotem',
-    date: { day: 1, month: 2, year: 2020 },
-    image:
-      'https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80',
-    imageAlt: 'alt',
-    text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac lectus iaculis ut amet, consequat. Iaculis vivamus pharetra fringilla sit. Vitae est.',
-    wordsCount: 240,
-  },
-  {
-    title: 'Trzeci lot samolotem',
-    date: { day: 12, month: 1, year: 2020 },
-    image:
-      'https://images.unsplash.com/photo-1590746197887-4420dda1e540?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80',
-    imageAlt: 'alt',
-    text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac lectus iaculis ut amet, consequat. Iaculis vivamus pharetra fringilla sit. Vitae est.',
-    wordsCount: 20,
-  },
-  {
-    title: 'Czwarty lot samolotem',
-    date: { day: 1, month: 1, year: 2020 },
-    image:
-      'https://images.unsplash.com/photo-1579019689750-670379352ec2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2732&q=80',
-    imageAlt: 'alt',
-    text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac lectus iaculis ut amet, consequat. Iaculis vivamus pharetra fringilla sit. Vitae est.',
-    wordsCount: 480,
-  },
-  {
-    title: 'Piąty lot samolotem',
-    date: { day: 2, month: 6, year: 2020 },
-    image:
-      'https://images.unsplash.com/photo-1503152394-c571994fd383?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
-    imageAlt: '',
-    text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac lectus iaculis ut amet, consequat. Iaculis vivamus pharetra fringilla sit. Vitae est.',
-    wordsCount: 120,
-  },
-  {
-    title: 'Szósty lot samolotem',
-    date: { day: 1, month: 2, year: 2020 },
-    image:
-      'https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80',
-    imageAlt: 'alt',
-    text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac lectus iaculis ut amet, consequat. Iaculis vivamus pharetra fringilla sit. Vitae est.',
-    wordsCount: 240,
-  },
-  {
-    title: 'Siódmy lot samolotem',
-    date: { day: 12, month: 1, year: 2020 },
-    image:
-      'https://images.unsplash.com/photo-1590746197887-4420dda1e540?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80',
-    imageAlt: 'alt',
-    text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac lectus iaculis ut amet, consequat. Iaculis vivamus pharetra fringilla sit. Vitae est.',
-    wordsCount: 20,
-  },
-  {
-    title: 'ósmy lot samolotem',
-    date: { day: 1, month: 1, year: 2020 },
-    image:
-      'https://images.unsplash.com/photo-1579019689750-670379352ec2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2732&q=80',
-    imageAlt: 'alt',
-    text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac lectus iaculis ut amet, consequat. Iaculis vivamus pharetra fringilla sit. Vitae est.',
-    wordsCount: 480,
-  },
-];
-const Home: React.FC<PageProps> = () => (
+interface Query {
+  allMdx: {
+    nodes: {
+      frontmatter: {
+        author: string;
+        country: string;
+        date: string;
+        image: { childImageSharp: { fixed: FixedObject } };
+        imageSize: string;
+        title: string;
+        path: string;
+      };
+      timeToRead: number;
+      excerpt: string;
+    }[];
+  };
+}
+
+interface HomepageProps extends PageProps {
+  data: Query;
+}
+const Home: React.FC<HomepageProps> = ({ data }) => (
   <>
     <Navigation />
     <main>
@@ -108,18 +49,29 @@ const Home: React.FC<PageProps> = () => (
           </Align>
         </SecondaryTextColor>
         <Masonry>
-          {blogPosts.map(
-            ({ title, date, image, imageAlt, text, wordsCount }) => (
+          {data.allMdx.nodes.map(({ excerpt, frontmatter, timeToRead }) => {
+            const { title, date, image, imageSize, path } = frontmatter;
+            const dateArray = date.split('-');
+            const dateObject = {
+              day: Number(dateArray[2]),
+              month: Number(dateArray[1]),
+              year: Number(dateArray[0]),
+            };
+
+            return (
               <BlogTile
+                key={title}
                 title={title}
-                date={date}
-                image={image}
-                imageAlt={imageAlt}
-                text={text}
-                readTime={Math.ceil(wordsCount / 100)}
+                date={dateObject}
+                path={path}
+                image={image.childImageSharp.fixed}
+                imageSize={getThumbnailSize(imageSize)}
+                imageAlt=""
+                text={excerpt}
+                readTime={timeToRead}
               />
-            )
-          )}
+            );
+          })}
         </Masonry>
       </Container>
     </main>
@@ -127,3 +79,29 @@ const Home: React.FC<PageProps> = () => (
 );
 
 export default Home;
+
+export const query = graphql`
+  query {
+    allMdx(sort: { fields: frontmatter___date, order: DESC }, limit: 6) {
+      nodes {
+        frontmatter {
+          author
+          country
+          date
+          path
+          imageSize
+          image {
+            childImageSharp {
+              fixed(width: 350, height: 350) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
+          title
+        }
+        timeToRead
+        excerpt
+      }
+    }
+  }
+`;
