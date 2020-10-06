@@ -1,5 +1,8 @@
+import React from 'react';
+import Masonry from 'react-masonry-component';
 import { PageProps, graphql } from 'gatsby';
 import { FixedObject } from 'gatsby-image';
+import getThumbnailSize from '@/utils/getThumbnailSize';
 import Align from '@/components/base/Align';
 import { SecondaryTextColor } from '@/components/base/Colors';
 import Container from '@/components/base/Container';
@@ -7,9 +10,7 @@ import Heading from '@/components/base/Heading';
 import LinkButton from '@/components/base/LinkButton';
 import BlogTile from '@/components/BlogTile';
 import Navigation from '@/components/Navigation';
-import React from 'react';
-import Masonry from 'react-masonry-component';
-import getThumbnailSize from '@/utils/getThumbnailSize';
+import Map from '@/components/Map';
 
 interface Query {
   allMdx: {
@@ -32,6 +33,7 @@ interface Query {
 interface HomepageProps extends PageProps {
   data: Query;
 }
+
 const Home: React.FC<HomepageProps> = ({ data }) => (
   <>
     <Navigation />
@@ -48,7 +50,10 @@ const Home: React.FC<HomepageProps> = ({ data }) => (
             <LinkButton to="test" text="Poznaj nas" />
           </Align>
         </SecondaryTextColor>
-        <Masonry>
+        <Masonry
+          options={{ fitWidth: true }}
+          style={{ margin: '0 auto', maxWidth: '100%' }}
+        >
           {data.allMdx.nodes.map(({ excerpt, frontmatter, timeToRead }) => {
             const { title, date, image, imageSize, path } = frontmatter;
             const dateArray = date.split('-');
@@ -73,7 +78,64 @@ const Home: React.FC<HomepageProps> = ({ data }) => (
             );
           })}
         </Masonry>
+        <Align horizontal="center">
+          <LinkButton text="Czytaj więcej" to="/blog" />
+        </Align>
       </Container>
+      <div>
+        <Container>
+          <Heading level={2}>O nas</Heading>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+            laoreet maximus nibh in consectetur. Aliquam mi augue... Lorem ipsum
+            dolor sit amet, consectetur adipiscing elit. Maecenas laoreet
+            maximus nibh in consectetur. Aliquam mi augue
+          </p>
+          <LinkButton text="O nas" to="/about" />
+        </Container>
+      </div>
+      <div style={{ backgroundColor: '#F6F6F6' }}>
+        <div style={{ overflow: 'hidden' }}>
+          <Container>
+            <Heading style={{ textAlign: 'center' }} level={2}>
+              Co udało nam się zwiedzić?
+            </Heading>
+          </Container>
+
+          <div style={{ position: 'relative' }}>
+            <Map style={{ position: 'relative', zIndex: 1 }} active />
+            <Map
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '150%',
+                opacity: '0.1',
+              }}
+            />
+          </div>
+        </div>
+        <Container>
+          <Heading level={2}>Nasze social media</Heading>
+          <p>
+            Wstawiamy zdjęcia odwiedzonych miejsc i opowiadamay historie ze
+            świata. Codziennie możesz usłyszeć od nas coś nowego
+          </p>
+          <a rel="noreferrer noopener" target="_blank" href="yt">
+            YouTube
+            {/* <YouTubeIcon/> */}
+          </a>
+          <a rel="noreferrer noopener" target="_blank" href="in">
+            Instagram
+            {/* <InstagramIcon/> */}
+          </a>
+          <a rel="noreferrer noopener" target="_blank" href="li">
+            LinkedIn
+            {/* <LinkedInIcon/> */}
+          </a>
+        </Container>
+      </div>
     </main>
   </>
 );

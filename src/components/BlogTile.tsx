@@ -10,12 +10,12 @@ const Card = styled.article`
   color: #000;
   width: 400px;
   max-width: 100%;
-  margin: 1rem;
+  margin: 1rem 0;
   box-shadow: 2px 3px 6px rgba(180, 180, 180, 0.16),
-    2px 12px 14px rgba(180, 180, 180, 0.17),
-    0px 2px 4px rgba(180, 180, 180, 0.2);
+    2px 12px 14px rgba(180, 180, 180, 0.17), 0 2px 4px rgba(180, 180, 180, 0.2);
   @media (min-width: 768px) {
     max-width: calc(50% - 2rem);
+    margin: 1rem;
   }
   @media (min-width: 1366px) {
     max-width: calc(33% - 2rem);
@@ -100,7 +100,6 @@ const BlogTile: React.FC<Props> = ({
     month: 'long',
     year: 'numeric',
   }).format(new Date(year, month, day));
-
   const data = useStaticQuery(graphql`
     query {
       allFile(

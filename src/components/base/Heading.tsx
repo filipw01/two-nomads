@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import styled, { css } from 'styled-components';
 
 interface Props {
   level?: number;
   as?: number;
+  style?: CSSProperties;
 }
 
-const Heading: React.FC<Props> = ({ level = 1, as, children }) => {
+const Heading: React.FC<Props> = ({ level = 1, as, children, style }) => {
   const CurrentLevelHeading = `h${level}` as keyof JSX.IntrinsicElements;
 
   let restStyle;
@@ -43,7 +44,7 @@ const Heading: React.FC<Props> = ({ level = 1, as, children }) => {
     color: var(--heading-color);
     ${restStyle}
   `;
-  return <StyledHeading>{children}</StyledHeading>;
+  return <StyledHeading style={style}>{children}</StyledHeading>;
 };
 
 export default Heading;
