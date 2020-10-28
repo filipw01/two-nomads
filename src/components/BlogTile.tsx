@@ -11,8 +11,8 @@ const Card = styled.article`
   width: 400px;
   max-width: 100%;
   margin: 1rem 0;
-  box-shadow: 2px 3px 6px rgba(180, 180, 180, 0.16),
-    2px 12px 14px rgba(180, 180, 180, 0.17), 0 2px 4px rgba(180, 180, 180, 0.2);
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.16), 2px 12px 14px rgba(0, 0, 0, 0.17),
+    0 2px 4px rgba(0, 0, 0, 0.2);
   @media (min-width: 768px) {
     max-width: calc(50% - 2rem);
     margin: 1rem;

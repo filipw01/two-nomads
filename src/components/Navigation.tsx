@@ -17,7 +17,7 @@ const Navigation: React.FC<unknown> = () => {
     { name: 'test2', link: '/test2' },
   ];
   return (
-    <Container>
+    <Container style={{ position: 'relative', zIndex: 2 }}>
       <SecondaryTextColor>
         <StyledHeader>
           <div>2N</div>

@@ -5,11 +5,13 @@
   --secondary-text-color: #ffffff;
   --heading-color: var(--primary-heading-color);
   --text-color: var(--primary-text-color);
+  --heading-alternative-color: var(--secondary-heading-color);
+  --text-alternative-color: var(--secondary-text-color);
 }
 
 body {
   margin: 0;
-  background: gray;
+  background: #F6F6F6;
   font-family: 'Livvic';
   font-size: 1.125rem;
   line-height: 1.3;
@@ -19,6 +21,11 @@ body {
 p {
   margin-bottom: 0.3em;
   color: var(--text-color);
+}
+
+section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 @font-face {
